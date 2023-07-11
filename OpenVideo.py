@@ -2,9 +2,10 @@ import numpy.random
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from _datetime import datetime
 
 
-def open(browser,wait,log):
+def open_video(browser,wait,log):
 
     try:
         wait.until(EC.presence_of_all_elements_located((By.XPATH, "//a[@id='{}']".format("thumbnail"))))
@@ -12,9 +13,12 @@ def open(browser,wait,log):
     except:
         return
 
-    nr_random = numpy.random.randint(1,len(videos)-1)
-    browser.execute_script("arguments[0].click()", videos[nr_random])
 
+    if len(videos)>0:
+        nr_random = numpy.random.randint(1,len(videos)-1)
+        browser.execute_script("arguments[0].click()", videos[nr_random])
+    else:
+        log.write("Not video found!\n")
 
 
 
@@ -22,16 +26,17 @@ def play(browser,wait,log):
     try:
         wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='ytp-large-play-button ytp-button']")))
         play_btn = browser.find_element(By.XPATH, "//button[@class='ytp-large-play-button ytp-button']")
-        print("a mers")
         play_btn.click()
+        log.write("Played video at {}\n".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     except TimeoutException:
-        print("Nu l am gasit")
+        log.write("Play button doesn't exist!\n")
+        return
 
 
     try:
         skip_button =  wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='ytp-ad-skip-button ytp-button']")))
         if skip_button:
-            print("Am gasit skip buton")
             skip_button.click()
     except:
-        print("Nu am gasit skip buton")
+        log.write("Skip button doesn't exist!\n")
+        return
