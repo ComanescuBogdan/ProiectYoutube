@@ -18,7 +18,7 @@ def audio(log):
     channels = 1
     # 44100 samples per second
     sample_rate = 44100
-    record_seconds = 10
+    record_seconds = 15
     # initialize PyAudio object
     p = pyaudio.PyAudio()
     # open stream object as input & output

@@ -1,8 +1,11 @@
+import time
+
 import numpy.random
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
 from _datetime import datetime
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 def open_video(browser,wait,log):
@@ -23,6 +26,8 @@ def open_video(browser,wait,log):
 
 
 def play(browser,wait,log):
+
+
     try:
         wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='ytp-large-play-button ytp-button']")))
         play_btn = browser.find_element(By.XPATH, "//button[@class='ytp-large-play-button ytp-button']")
@@ -32,11 +37,13 @@ def play(browser,wait,log):
         log.write("Play button doesn't exist!\n")
         return
 
+    # time.sleep(6)
 
     try:
-        skip_button =  wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='ytp-ad-skip-button ytp-button']")))
+        skip_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='ytp-ad-skip-button ytp-button']")))
         if skip_button:
             skip_button.click()
+            log.write("Skip button clicked at {}\n".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     except:
         log.write("Skip button doesn't exist!\n")
-        return
+

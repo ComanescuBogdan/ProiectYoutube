@@ -18,7 +18,7 @@ def record(log):
     # create the video write object
     out = cv2.VideoWriter("video.avi", fourcc, fps, (SCREEN_SIZE))
     # the time you want to record in seconds
-    record_seconds = 10
+    record_seconds = 15
 
     required_size = int(record_seconds * fps) * SCREEN_SIZE[0] * SCREEN_SIZE[1] * 3  # 3 channels for BGR color
 
@@ -35,7 +35,7 @@ def record(log):
             # convert colors from BGR to RGB
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             # write the frame
-            out.write(frame)
+            out.write(frame)# de facut verfi
             # if the user clicks q, it exits
             if cv2.waitKey(1) == ord("q"):
                 break

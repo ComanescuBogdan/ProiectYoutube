@@ -23,7 +23,7 @@
 inregistrare video, inregistrare audio, concatenare fisiere audio si video, afisarea nivelului decibelilor.
 #### Erori intampinate:
    - In momentul deschiderii YouTube videoclipul era deja selectat inainte ca pagina de acceptare sau refuzare a cookie-urilor sa fie afisata. Am ales sa pun un `time.sleep(2)` pentru a astepta pagina de cookie-uri sa fie incarcata.
-   - In fisierul ***RecordAudio.py*** se afla codul comentat pentru inregistrarea audio-ului din output, nu cel de la microfon. Fiind folosit in threaduri nu functioneaza si are erori. Posibil de la specificalitile slabe ale pc-ul folosit, care are un procesor mic si putine threaduri. Nu am avut o solutie finala, asa ca am ramas la inregistrarea audio-ului de la microfon.
+   - In fisierul ***RecordAudio.py*** se afla codul comentat pentru inregistrarea audio-ului din output, nu cel de la microfon. Fiind folosit in threaduri nu functioneaza si are erori. O posibila cauza este atunci cand este deschisa si o aplicatie de meet precum Zoom, Discord, Teams. Nu am avut o solutie finala, asa ca am ramas la inregistrarea audio-ului de la microfon.
    - Caz in care videoclipul nu are reclama si in consecinta nu exista buton de skip. Am adaugat o verificare in cazul in care butonul de skip a fost gasit atunci sa fie apasat.
 
 #### Functionalitatea:

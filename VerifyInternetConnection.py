@@ -1,5 +1,6 @@
 #librarie pentru a face request sa vedem conexiunea la internet
 import requests
+import time
 
 
 def conexiune():
@@ -8,7 +9,4 @@ def conexiune():
         return True
     except:
         return False
-
-
-
 
